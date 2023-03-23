@@ -1,5 +1,5 @@
 homepage: "https://www.heylink.com"
 documentation: "https://docs.heylink.com/inbound/tracking-guide"
 versions:
-  - sha: ec3b9dbb6c8b80a3d5b7ec10386fb9b879a1cb3d
+  - sha: b5697ba82b42a2b45044967599e39c44bc22133e
     changeNotes: Updates.
