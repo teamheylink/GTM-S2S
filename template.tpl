@@ -220,7 +220,7 @@ ___TEMPLATE_PARAMETERS___
 ___SANDBOXED_JS_FOR_SERVER___
 
 //# HeyLink Server Side Template
-//# Last updated: 20Dec22@1148
+//# Last updated: 23MAR23@0846
 const sendHttpRequest = require('sendHttpRequest');
 const setResponseBody = require('setResponseBody');
 const setResponseStatus = require('setResponseStatus');
@@ -257,7 +257,7 @@ if (getEvetName() == 'page_view') {
 }
 
 // track conversion
-if(getEvetName() == 'begin_checkout') {
+if(getEvetName() == 'Purchase') {
   var affiliateCookieId = getCookieValues(serverSideookieName)[0];
   
    if (affiliateCookieId) {
@@ -307,12 +307,15 @@ if(getEvetName() == 'begin_checkout') {
      // adjust shipping for tax
          var orderShippingSubTotal;
          var orderShipping;
-         if (data.shippingVat == "inclVat")  {
-           orderShippingSubTotal = inputOrderShipping  / (1 + makeNumber(data.taxRate));
-           orderShipping = inputOrderShipping;
+       
+     if (makeNumber(inputOrderShipping) === 0 || makeNumber(data.taxRate) === 0) {
+         orderShippingSubTotal = 0;
+     } else if (data.shippingVat == "inclVat")  {
+           orderShippingSubTotal = makeNumber(inputOrderShipping) / (1 + makeNumber(data.taxRate));
+           orderShipping = makeNumber(inputOrderShipping);
          }
          else {
-           orderShippingSubTotal = inputOrderShipping;    
+           orderShippingSubTotal = makeNumber(inputOrderShipping);    
          }
      
        
