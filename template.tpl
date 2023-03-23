@@ -257,7 +257,7 @@ if (getEvetName() == 'page_view') {
 }
 
 // track conversion
-if(getEvetName() == 'Purchase') {
+if(getEvetName() == 'purchase') {
   var affiliateCookieId = getCookieValues(serverSideookieName)[0];
   
    if (affiliateCookieId) {
